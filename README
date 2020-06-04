@@ -1,0 +1,11 @@
+These are the unmaintained ports from my CRUX ports collection.
+
+This is also a working repository. If you wish to add it then download the 
+unmaintained.httpup to '/etc/ports/' and edit the '/etc/prt-get.conf' file. You
+can do this by adding the line 'prtdir /usr/ports/yenjie/unmaintained' and then 
+to update just 'ports -u unmaintained'. If you do not wish and only want
+specific ports then you can download them separately instead. This is the
+recommended way.
+
+This only exists for the benefit of those who wish to get ideas from the
+Pkgfile or any patches and scripts that may come in handy.
