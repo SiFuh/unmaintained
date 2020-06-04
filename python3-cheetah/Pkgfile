@@ -1,0 +1,20 @@
+# Description:  A Python powered template engine and code generator
+# URL:          http://www.cheetahtemplate.org
+# Maintainer:   Lin SiFuh, #crux at freenode dot net
+# Depends on:   python3-setuptools 
+
+name=python3-cheetah
+version=3.2.5
+release=1
+source=(https://files.pythonhosted.org/packages/source/C/Cheetah3/Cheetah3-${version}.tar.gz) 
+
+build() {
+
+  cd Cheetah3-$version
+
+  /usr/bin/python3 setup.py build
+  /usr/bin/python3 setup.py install --root=${PKG}
+
+  find ${PKG} -name '*egg-info' | xargs rm -r
+
+}

@@ -1,0 +1,11 @@
+NOTE:
+
+  This is experimental and by no means ready. To make this script useful 
+  I suggest you edit /etc/rc.modules and add the following lines before
+  /sbin/depmod -a.
+
+    if [ -f /sbin/modautocompile.sh ]; then
+      /bin/bash /sbin/modautocompile.sh start
+    fi
+
+  I haven't even tested it yet.

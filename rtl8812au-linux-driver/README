@@ -1,0 +1,7 @@
+Important!
+
+* Use "ip" and "iw" instead of "ifconfig" and "iwconfig"
+     It's described further down, READ THE README!
+
+* v5.3.4 is the stable branch, not this, but this does have
+  better range then branches below + more fixes from Realtek

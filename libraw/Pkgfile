@@ -1,0 +1,23 @@
+# Description: 	A library for reading RAW files from digital camera photos
+# URL: 		https://www.libraw.org/
+# Packager: 
+# Maintainer:	Lin SiFuh, #crux at freenode dot net 	
+# Depends on:
+
+name=libraw
+version=0.19.3
+release=1
+source=(https://github.com/LibRaw/LibRaw/archive/${version}.tar.gz)
+
+build() {
+
+	cd LibRaw-${version}
+  	autoreconf -vi
+  	./configure --prefix=/opt
+  
+	make
+  	make DESTDIR=${PKG} install
+
+  	rm -rf "${PKG}/opt/share/doc"
+
+}

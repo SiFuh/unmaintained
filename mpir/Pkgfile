@@ -1,0 +1,21 @@
+# Description: 	A highly optimised library for bignum arithmetic
+# URL:		http://mpir.org/index.html
+# Packager:	
+# Maintainer:	Lin SiFuh, #crux at freenode dot net 	
+# Depends on:	yasm
+
+name=mpir
+version=3.0.0
+release=1
+source=(http://mpir.org/$name-$version.tar.bz2)
+
+build() {
+
+	cd $name-$version
+	./configure --prefix=/usr --enable-cxx 
+	
+	make
+	make DESTDIR=$PKG install
+	
+	rm -rf $PKG/usr/share
+}

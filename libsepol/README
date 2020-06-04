@@ -1,0 +1,16 @@
+NOTE:
+
+	The ports - libselinux and libsepol are only here as an
+	assistant program for some AppImages that may require 
+	selinux's libraries.
+
+	This is NOT a full implementation of Selinux.
+
+	If you wish to use these libraries, you should create
+	the configuration file /etc/ld.so.conf.d/opt.conf with
+	the two lines that point to your libs directories in
+	/opt. A typical example are the two following lines.
+	
+	/opt/lib/
+	/opt/usr/lib/
+

@@ -1,0 +1,18 @@
+# Description:  Autocompile extra modules on reboot after kernel upgraded
+# URL:          https://github.com/SiFuh/yenjie/tree/master/modautocompile
+# Packager:
+# Maintainer:   Lin SiFuh, #crux at freenode dot net
+# Depends on:
+
+name=modautocompile
+version=0.1
+release=1
+source=(modautocompile.sh modautocompile.conf)
+
+build() {
+
+  mkdir $PKG/{sbin,etc}
+	cp $SRC/modautocompile.sh $PKG/sbin/
+  cp $SRC/modautocompile.conf $PKG/etc/
+
+}

@@ -1,0 +1,23 @@
+# Description:	SmokePing keeps track of your network latency
+# URL:		https://oss.oetiker.ch/smokeping/
+# Packager:	
+# Maintainer:	Lin SiFuh, #crux at freenode dot net 	
+# Depends on:	rrdtool
+
+name=smokeping
+version=2.7.3
+release=1
+source=(https://oss.oetiker.ch/$name/pub/$name-$version.tar.gz)
+
+build() {
+	export LC_ALL=""
+
+	cd $name-$version
+	./configure --prefix=/usr
+
+	make
+	make DESTDIR=$PKG install
+
+	rm -rf $PKG/usr/{htdocs,etc/examples}
+
+}

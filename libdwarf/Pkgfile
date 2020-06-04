@@ -1,0 +1,23 @@
+# Description: 	DWARF is a debugging file format used by many compilers and debuggers
+# URL:		https://www.prevanders.net/dwarfolder.html
+# Packager:	
+# Maintainer:	Lin SiFuh, #crux at freenode dot net 	
+# Depends on:
+
+name=libdwarf
+version=20200114
+release=1
+source=(https://www.prevanders.net/libdwarf-20200114.tar.gz)
+
+build() {
+
+	cd $name-$version
+	./configure --prefix=/usr
+
+	make 
+	make DESTDIR=$PKG install
+
+	# Conflicts with elfutils.
+	rm $PKG/usr/include/dwarf.h
+
+}

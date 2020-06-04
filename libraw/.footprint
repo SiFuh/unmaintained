@@ -1,0 +1,36 @@
+drwxr-xr-x	root/root	opt/
+drwxr-xr-x	root/root	opt/bin/
+-rwxr-xr-x	root/root	opt/bin/4channels
+-rwxr-xr-x	root/root	opt/bin/dcraw_emu
+-rwxr-xr-x	root/root	opt/bin/dcraw_half
+-rwxr-xr-x	root/root	opt/bin/half_mt
+-rwxr-xr-x	root/root	opt/bin/mem_image
+-rwxr-xr-x	root/root	opt/bin/multirender_test
+-rwxr-xr-x	root/root	opt/bin/postprocessing_benchmark
+-rwxr-xr-x	root/root	opt/bin/raw-identify
+-rwxr-xr-x	root/root	opt/bin/simple_dcraw
+-rwxr-xr-x	root/root	opt/bin/unprocessed_raw
+drwxr-xr-x	root/root	opt/include/
+drwxr-xr-x	root/root	opt/include/libraw/
+-rw-r--r--	root/root	opt/include/libraw/libraw.h
+-rw-r--r--	root/root	opt/include/libraw/libraw_alloc.h
+-rw-r--r--	root/root	opt/include/libraw/libraw_const.h
+-rw-r--r--	root/root	opt/include/libraw/libraw_datastream.h
+-rw-r--r--	root/root	opt/include/libraw/libraw_internal.h
+-rw-r--r--	root/root	opt/include/libraw/libraw_types.h
+-rw-r--r--	root/root	opt/include/libraw/libraw_version.h
+drwxr-xr-x	root/root	opt/lib/
+-rw-r--r--	root/root	opt/lib/libraw.a
+-rwxr-xr-x	root/root	opt/lib/libraw.la
+lrwxrwxrwx	root/root	opt/lib/libraw.so -> libraw.so.19.0.1
+lrwxrwxrwx	root/root	opt/lib/libraw.so.19 -> libraw.so.19.0.1
+-rwxr-xr-x	root/root	opt/lib/libraw.so.19.0.1
+-rw-r--r--	root/root	opt/lib/libraw_r.a
+-rwxr-xr-x	root/root	opt/lib/libraw_r.la
+lrwxrwxrwx	root/root	opt/lib/libraw_r.so -> libraw_r.so.19.0.1
+lrwxrwxrwx	root/root	opt/lib/libraw_r.so.19 -> libraw_r.so.19.0.1
+-rwxr-xr-x	root/root	opt/lib/libraw_r.so.19.0.1
+drwxr-xr-x	root/root	opt/lib/pkgconfig/
+-rw-r--r--	root/root	opt/lib/pkgconfig/libraw.pc
+-rw-r--r--	root/root	opt/lib/pkgconfig/libraw_r.pc
+drwxr-xr-x	root/root	opt/share/

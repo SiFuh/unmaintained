@@ -1,0 +1,27 @@
+# Description:  Personal and small-business financial-accounting software
+# URL:          https://www.gnucash.org/
+# Packager:
+# Maintainer:   Lin SiFuh, #crux at freenode dot net
+# Depends on:   cmake libxml2 boost ninja swig webkitgtk docbook-xsl guile googletest libdbi
+
+name=gnucash
+version=3.8b
+release=1
+source=(https://downloads.sourceforge.net/sourceforge/$name/$name-$version.tar.bz2)
+
+build() {
+
+	mkdir $name-${version/b}/build
+	cd $name-${version/b}/build
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr \
+	      -DWITH_AQBANKING=off        \
+	      -DWITH_OFX=off ../
+
+	make
+	make DESTDIR=$PKG install
+
+  rm -rf $PKG/usr/share/{doc,locale}
+  rm $PKG/usr/share/glib-2.0/schemas/gschemas.compiled
+
+}

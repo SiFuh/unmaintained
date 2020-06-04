@@ -1,0 +1,5 @@
+untrusted comment: verify with /etc/ports/yenjie.pub
+RWQ0NN0w0eo0uLuwrhP/tv/zWRmOYFbi4NRUsd0zhti1uhiW2vZKvtGr+0f7uKBoyQTWfgU/84LRyI4lZ+J894+8zBkVyFmWfgU=
+SHA256 (Pkgfile) = 67fc4152764cbdc327d68436f4f2677174efa3a4b7186b5d539b7ff48299a99c
+SHA256 (.footprint) = 6cd0276533ffe76ba4b48fc5efbdbe3b550a3bb664d7ebd0b263f17ac610b849
+SHA256 (nessus.sh) = 9b8e2c15d86ce7b83806a27bd6685f009ad339f3ea52022b87a75fbd2802ec5a

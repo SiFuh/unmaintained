@@ -1,0 +1,6 @@
+untrusted comment: verify with /etc/ports/yenjie.pub
+RWQ0NN0w0eo0uNLhABHkHO39/k0mkgoSNbPk3kXwpFIvpmFXuM2jKL50xg5VtCihbbRJ/Opgf5vhXRlMMeoAcwaM6CY1rcrrsAc=
+SHA256 (Pkgfile) = 472ce2f7e4c7aafb1184ff175018158dd3a7b5321f749f1e2824372b360fa719
+SHA256 (.footprint) = 96a5999149dec98383b745db33b3a0539d55ac4fe29923ec73fccc3da0765abf
+SHA256 (modautocompile.sh) = dd00f96de9dc9946bdded84d4e9453dee328432d5e38be7bf8dce442e15ede68
+SHA256 (modautocompile.conf) = 366b15a256e0259625f0d2d82df7d9721b01db2cbf9b6c7f3120f17b2d7ae224

@@ -1,0 +1,82 @@
+diff -r -u hostname.c.orig hostname.c
+--- hostname.c.orig	2001-04-08 17:04:23.000000000 +0000
++++ hostname.c	2020-02-18 14:31:37.719999821 +0000
+@@ -78,6 +78,7 @@
+             fprintf(stderr, _("%s: name too long\n"), program_name);
+             break;
+         default:
++	    ;
+         }
+ 	exit(1);
+     }
+@@ -98,6 +99,7 @@
+ 	    fprintf(stderr, _("%s: name too long\n"), program_name);
+ 	    break;
+ 	default:
++	    ;
+ 	}
+ 	exit(1);
+     };
+@@ -117,6 +119,7 @@
+ 	    fprintf(stderr, _("%s: name too long\n"), program_name);
+ 	    break;
+ 	default:
++	    ;
+ 	}
+ 	exit(1);
+     };
+@@ -174,6 +177,7 @@
+ 	printf("%s\n", hp->h_name);
+ 	break;
+     default:
++	;
+     }
+ }
+ 
+diff -r -u lib/inet_sr.c.orig lib/inet_sr.c
+--- lib/inet_sr.c.orig	2000-02-20 21:46:45.000000000 +0000
++++ lib/inet_sr.c	2020-02-18 14:13:54.243333182 +0000
+@@ -104,7 +104,6 @@
+        isnet = 1; break;
+     case 2:
+        isnet = 0; break;
+-    default:
+     }
+ 
+     /* Fill in the other fields. */
+diff -r -u lib/x25_sr.c.orig lib/x25_sr.c
+--- lib/x25_sr.c.orig	2000-05-20 13:38:10.000000000 +0000
++++ lib/x25_sr.c	2020-02-18 14:31:56.089999820 +0000
+@@ -22,6 +22,7 @@
+ #include <sys/socket.h>
+ #include <sys/ioctl.h>
+ #include <linux/x25.h>
++#include <linux/version.h>
+ #include <ctype.h>
+ #include <errno.h>
+ #include <netdb.h>
+@@ -77,7 +78,11 @@
+   rt.sigdigits=sigdigits;
+ 
+   /* x25_route_struct.address isn't type struct sockaddr_x25, Why? */
++#if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 0)
+   memcpy(&rt.address, &sx25.sx25_addr, sizeof(x25_address));
++#else
++  memcpy(&rt.address, &sx25.sx25_addr, sizeof(struct x25_address));
++#endif
+ 
+   while (*args) {
+ 	if (!strcmp(*args,"device") || !strcmp(*args,"dev")) {
+diff -r -u nameif.c.orig nameif.c
+--- nameif.c.orig	2000-10-18 17:26:29.000000000 +0000
++++ nameif.c	2020-02-18 14:33:47.349999822 +0000
+@@ -99,8 +99,8 @@
+ 	struct ifreq ifr;
+ 	opensock(); 
+ 	memset(&ifr,0,sizeof(struct ifreq));
+-	strcpy(ifr.ifr_name, oldname); 
+-	strcpy(ifr.ifr_newname, newname); 
++	strncpy(ifr.ifr_name, oldname, IF_NAMESIZE); 
++	strncpy(ifr.ifr_newname, newname, IF_NAMESIZE); 
+ 	return ioctl(ctl_sk, SIOCSIFNAME, &ifr);
+ }

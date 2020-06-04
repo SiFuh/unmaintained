@@ -1,0 +1,5 @@
+untrusted comment: verify with /etc/ports/yenjie.pub
+RWQ0NN0w0eo0uHzM6KAJzAMnPZ4Y5iCMR9PXLCr0L27QUc0OZgd7PY9AkAzNRZQoNhLdczvVWBIfsqbkrQWusrFM6h3gx8AAfwo=
+SHA256 (Pkgfile) = 14794847a9894fee1b00ba755a065c148fa57ef77d8c7dab6babfd4e52ea7940
+SHA256 (.footprint) = 687bdaf35aa9eb3e45712aa11b24da0015af2aeb5643cb4f73dad9ffc939fa41
+SHA256 (fcitx-configtool-0.4.10.tar.xz) = bcc4976976bfbddbfec3f689f38927fbabc7f7fa611ea252a789583ea14cd1fb

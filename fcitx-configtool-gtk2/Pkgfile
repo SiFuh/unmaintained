@@ -1,0 +1,26 @@
+# Description: GTK2 configuration tool for the fcitx input framework
+# URL:         http://fcitx-im.org/
+# Maintainer:  Lin SiFuh, #crux at freenode dot net
+# Depends on:  fcitx gtk dbus-glib
+
+name=fcitx-configtool-gtk2
+version=0.4.10
+release=1
+source=(https://download.fcitx-im.org/${name//-gtk2}/${name//-gtk2}-$version.tar.xz)
+
+build(){
+
+  cd ${name//-gtk2}-$version
+
+  cmake . \
+    -DCMAKE_BUILD_TYPE=Release   \
+    -DCMAKE_INSTALL_PREFIX=/usr  \
+    -DENABLE_GTK3=OFF            \
+    -DENABLE_GTK2=ON
+
+  make
+  make DESTDIR=$PKG install
+
+  rm -rf $PKG/usr/share/locale
+
+}

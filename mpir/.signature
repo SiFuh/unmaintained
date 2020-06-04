@@ -1,0 +1,5 @@
+untrusted comment: verify with /etc/ports/yenjie.pub
+RWQ0NN0w0eo0uAg9dY2tdlCd/23wYOszM1tMw7hf7vMRwJnAVQgmSA5Ne6oMkGjBawdaC42htXuExiNckb4920JtFhAs9SiZlwo=
+SHA256 (Pkgfile) = d9d909dc5952d928fbb9b407a0c9aa9206b2dc92c59a54e0237487b1037ce71b
+SHA256 (.footprint) = f7115cd18f8b53e35de80c7744628fae3ed4271429260eb60b18d8d61a29e12a
+SHA256 (mpir-3.0.0.tar.bz2) = 52f63459cf3f9478859de29e00357f004050ead70b45913f2c2269d9708675bb

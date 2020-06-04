@@ -1,0 +1,38 @@
+# Description:	TUXEDO Computers Kernel Module for keyboard backlighting
+# URL:		https://github.com/tuxedocomputers/tuxedo-keyboard
+# Packager:	
+# Maintainer:	Lin SiFuh, #crux at freenode dot net
+# Depends on:	git
+
+name=tuxedo-keyboard
+version=2.0.2
+sversion=1bfdf51c868226d6e3c354d0044f8eaf28b10ecf
+release=1
+source=(tuxedo_keyboard_conf.patch tuxedo-keys)
+
+build() {
+
+  cd ${PKGMK_SOURCE_DIR}
+    if [ ! -d "${name}" ]; then
+      git clone https://github.com/tuxedocomputers/${name}.git ${name}
+		  cd ${name}
+		if [ `git rev-parse HEAD` != ${sversion} ]; then
+      git checkout ${sversion}
+    fi
+	  else
+    cd ${name}
+    if [ `git rev-parse HEAD` != ${sversion} ]; then
+      git checkout ${sversion}
+    fi
+  fi
+
+	cp -r ${PKGMK_SOURCE_DIR}/${name} ${SRC}
+	cd ${SRC}/${name}
+	patch -p0 -i ${SRC}/tuxedo_keyboard_conf.patch
+
+	make clean && make
+	install -D -m 644 src/${name//-/_}.ko ${PKG}/lib/modules/$(uname -r)/misc/${name//-/_}.ko
+	install -D -m 644 tuxedo_keyboard.conf ${PKG}/etc/modprobe.d/tuxedo_keyboard.conf
+	install -D -m 755 ${SRC}/tuxedo-keys ${PKG}/usr/bin/tuxedo-keys
+
+}

@@ -1,0 +1,28 @@
+# Description: 	Seamonkey Web-Browser
+# URL: 		      http://www.seamonkey-project.org
+# Packager:	
+# Maintainer:	  Lin SiFuh, #crux at freenode dot net 	
+# Depends on:   gtk3 xorg-libxinerama xorg-libxcursor xorg-libxcomposite dbus-glib xorg-libxt
+
+name=seamonkey-bin
+version=2.53.2
+release=1
+source=(https://archive.mozilla.org/pub/${name//-bin/}/releases/$version/linux-x86_64/en-US/${name//-bin/}-$version.en-US.linux-x86_64.tar.bz2)
+#https://archive.mozilla.org/pub/seamonkey/releases/2.53.1/linux-x86_64/en-US/seamonkey-2.53.1.en-US.linux-x86_64.tar.bz2
+build() {
+
+	cd ${name//-bin/}
+	install -d $PKG/opt/{lib,bin}
+	mv $SRC/${name//-bin/} $PKG/opt/lib/${name//-bin/}
+	ln -s /opt/lib/${name//-bin/}/${name//-bin/} $PKG/opt/bin/${name//-bin/}
+	mkdir -p $PKG/opt/lib/${name//-bin/}/lib
+
+	mkdir -p $PKG/opt/etc/revdep.d
+	echo "/opt/lib/${name//-bin/}" > $PKG/opt/etc/revdep.d/${name}
+
+	install -m755 -d $PKG/opt/share/pixmaps
+
+        mkdir -p $PKG/etc/revdep.d
+        echo "/opt/lib/seamonkey/" > $PKG/etc/revdep.d/seamonkey-bin
+
+}

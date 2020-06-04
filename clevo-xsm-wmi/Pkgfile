@@ -1,0 +1,22 @@
+# Description:	Kernel module for keyboard backlighting of Clevo notebooks
+# URL:		https://bitbucket.org/tuxedocomputers/clevo-xsm-wmi/src
+# Packager:	
+# Maintainer:	Lin SiFuh, #crux at freenode dot net
+# Depends on:
+
+name=clevo-xsm-wmi
+version=16052018
+sversion=dcf282992eb8
+release=1
+source=(https://bitbucket.org/tuxedocomputers/$name/get/$sversion.zip
+	clevo-keys)
+
+build() {
+
+	cd tuxedocomputers-$name-$sversion/module
+	make
+
+	install -D -m 644 clevo-xsm-wmi.ko $PKG/lib/modules/$(uname -r)/misc/clevo-xsm-wmi.ko
+	install -D -m 755 $SRC/clevo-keys $PKG/usr/bin/clevo-keys
+	
+}

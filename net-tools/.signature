@@ -1,0 +1,7 @@
+untrusted comment: verify with /etc/ports/yenjie.pub
+RWQ0NN0w0eo0uLYtvcgDRV0ri4t9ClerbI9mzSORiUv2vo1ZoXcvjy8J+63lDkRyISY9rBp8tMo9p4Mk/h6HOHRv00d5Jziy3wk=
+SHA256 (Pkgfile) = 98eb4cd20b3cd749ce60ac7af945dff00dbc2c9fc6863743ac20ae7b34fbffa8
+SHA256 (.footprint) = 95e7e4ad766d79a311cce999dc3c2b7abe05fe73770cc83657dd296cdf242ae0
+SHA256 (net-tools-1.60.tar.bz2) = 7ae4dd6d44d6715f18e10559ffd270511b6e55a8900ca54fbebafe0ae6cf7d7b
+SHA256 (net-tools.patch) = 448aadffec707eda4127ef0e980c27b59c0442f116fa0edb6d5aa4efbe7e94ee
+SHA256 (config.h) = 5157897b72f36c5532d7f4ac932837c1dd9c8d60c615d57c7e2eec7177d7cf14

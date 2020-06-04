@@ -1,0 +1,22 @@
+# Description: 	Security Enhanced Linux (SELinux)
+# URL:         	https://selinuxproject.org/
+# Packager:    
+# Maintainer:	Lin SiFuh, #crux at freenode dot net 	  
+# Depends on: 	libsepol
+
+name=libselinux
+version=2.9
+release=1
+source=(https://github.com/SELinuxProject/selinux/releases/download/20190315/$name-$version.tar.gz
+	utils.patch)
+
+build () {
+
+	mkdir $PKG/opt/
+	cp -rf /opt/usr/include/sepol $SRC/$name-$version/include
+	patch -p1 -i $SRC/utils.patch
+	cd $SRC/$name-$version
+
+	make DESTDIR=$PKG/opt install
+
+}

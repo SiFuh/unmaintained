@@ -1,0 +1,24 @@
+# Description:  Googletest - Google Testing and Mocking Framework
+# URL:          https://github.com/google/googletest
+# Packager:
+# Maintainer:   Lin SiFuh, #crux at freenode dot net
+# Depends on:   cmake
+
+name=googletest
+version=1.10.0
+release=1
+source=(https://github.com/google/${name}/archive/release-${version}.tar.gz)
+
+build() {
+
+	mkdir -p ${name}-release-${version}/build
+	cd ${name}-release-${version}/build
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr ../
+
+	make
+	make DESTDIR=$PKG install
+
+	find $PKG -name README.md -delete
+
+}

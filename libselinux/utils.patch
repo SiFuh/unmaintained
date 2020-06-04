@@ -1,0 +1,11 @@
+--- a/libselinux-2.9/utils/Makefile	2019-03-15 18:32:30.000000000 +0800
++++ b/libselinux-2.9/utils/Makefile	2019-10-19 16:54:11.432777317 +0800
+@@ -54,7 +54,7 @@
+ TARGETS=$(patsubst %.c,%,$(sort $(wildcard *.c)))
+ endif
+ 
+-sefcontext_compile: LDLIBS += $(PCRE_LDLIBS) ../src/libselinux.a -lsepol
++sefcontext_compile: LDLIBS += $(PCRE_LDLIBS) ../src/libselinux.a -L/opt/usr/lib -lsepol
+ 
+ sefcontext_compile: sefcontext_compile.o ../src/regex.o
+ 

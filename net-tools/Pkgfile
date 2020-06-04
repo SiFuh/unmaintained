@@ -1,0 +1,23 @@
+# Description: 	Base networking utilities for Linux - DEPRECATED
+# URL:		http://net-tools.sourceforge.net/
+# Packager:	
+# Maintainer:	Lin SiFuh, #crux at freenode dot net 	
+# Depends on:	
+
+name=net-tools
+version=1.60
+release=1
+source=(https://jaist.dl.sourceforge.net/project/$name/$name-$version.tar.bz2	\
+	net-tools.patch config.h)
+
+build() {
+
+	cd $name-$version
+	patch -p0 -i $SRC/net-tools.patch
+	
+	cp $SRC/config.h $SRC/$name-$version/
+
+	make all
+	make BASEDIR=$PKG install
+
+}

@@ -1,0 +1,33 @@
+# Description:  Nessus vulnerability scanner
+# URL:          https://www.tenable.com/downloads/nessus
+# Packager:
+# Maintainer:   Lin SiFuh, #crux at freenode dot net
+# Depends on:   gnupg
+
+name=nessus-bin
+version=8.10.1
+release=1
+source=(${name//-bin}.sh)
+_source=(https://www.tenable.com/downloads/api/v1/public/pages/${name//-bin}/downloads/11047/download?i_agree_to_tenable_license_agreement=true)
+build() {
+
+  if [ -f ${PKGMK_SOURCE_DIR}/${name//-bin}-${version}-fc20.x86_64.rpm ]; then
+  :
+  else
+    ( cd ${PKGMK_SOURCE_DIR} &&                             \
+      wget -c ${_source} &&                                 \
+      mv download?i_agree_to_tenable_license_agreement=true \
+      ${name//-bin}-${version}-fc20.x86_64.rpm )
+  fi
+  
+  bsdtar -xf ${PKGMK_SOURCE_DIR}/${name//-bin}-${version}-fc20.x86_64.rpm
+
+  install -Dm755 ${name//-bin}.sh ${PKG}/etc/profile.d/${name//-bin}.sh
+  mkdir -p ${PKG}/etc/ld.so.conf.d \
+           ${PKG}/opt/${name//-bin}
+
+  echo /opt/${name//-bin}/lib > ${PKG}/etc/ld.so.conf.d/${name//-bin}.conf
+
+  cp -a opt/${name//-bin}/{bin,com,etc,lib,sbin,var} ${PKG}/opt/${name//-bin}
+
+}

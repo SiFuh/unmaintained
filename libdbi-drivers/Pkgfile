@@ -1,0 +1,26 @@
+# Description:  libdbi implements a database-independent abstraction layer in C
+# URL:          http://libdbi.sourceforge.net/
+# Packager:
+# Maintainer:   Lin SiFuh, #crux at freenode dot net
+# Depends on:   libdbi 
+
+name=libdbi-drivers
+version=0.9.0
+release=1
+source=(https://jaist.dl.sourceforge.net/project/${name}/${name}/${name}-${version}/${name}-${version}.tar.gz)
+
+
+build() {
+
+	cd $name-$version
+
+  ./configure --prefix=/usr   \
+  --with-sqlite3  \
+  --localstatedir=/var
+
+	make
+	make DESTDIR=$PKG install
+
+  rm -rf $PKG/usr/share
+	
+}

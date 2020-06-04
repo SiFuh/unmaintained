@@ -1,0 +1,192 @@
+#!/bin/bash
+#
+#
+#    clevo-keys - a simple shell script for changing the keyboard settings
+#    for clevo/sagem/metabox type laptops.
+#
+#    Copyright (c) 2020 by Lin SiFuh
+#
+#    *************************************************************************
+#    *                                                                       *
+#    * This program is free software; you can redistribute it and/or modify  *
+#    * it under the terms of the GNU General Public License as published by  *
+#    * the Free Software Foundation; either version 2 of the License, or     *
+#    * (at your option) any later version.                                   *
+#    *                                                                       *
+#    *************************************************************************
+#
+#   **** USE AT YOUR OWN RISK ****
+#
+
+CLEVO_VERSION="0.2"
+CLEVO_DIR="/sys/devices/platform/clevo_xsm_wmi/"
+CLEVO_CLIST="black red green cyan blue magenta white yellow"
+
+if [ "root" != "$USER" ]; then
+    echo "You are not root"
+    exit 1
+fi
+
+clevo_usage() {
+    echo ""
+    echo "Usage: clevo-keys [-m <number>] [-b <number>] [-c <color> [<color> ...]]"
+    echo ""
+    echo "Available values for OPTION include:"
+    echo ""
+    echo "[-b <number>]                Backlight brightness, a number between 1-10."
+    echo "[-c <color> [<color> ...]]   Keyboard color, accepts up to three arguments."
+    echo "[-m <number>]                Backlight mode, a number between 0-7."
+    echo "[-l]                         List all color choices."
+    echo "[-s]                         Check if kernel module is loaded."
+    echo "[-v]                         Show current version information."
+    echo "[-h]                         This information."
+    echo ""
+    exit 0
+}
+
+clevo_version() {
+    echo ""
+    echo "clevo-keys $CLEVO_VERSION"
+    echo "(c) 2020 by Lin SiFuh"
+    echo "This program is distributed under the GNU GPL license"
+    echo ""
+    exit 0
+}
+
+clevo_status() {
+    if [ `lsmod | grep -o clevo_xsm_wmi` ]; then
+        echo ""
+        echo "Module clevo_xsm_wmi is loaded"
+        echo ""
+        echo "Current Keyboard Configuration:"
+        echo ""
+        echo "  Color:          `cat  $CLEVO_DIR/kb_color`"
+        echo "  Pattern::       `cat  $CLEVO_DIR/kb_mode`"
+        echo "  Backlight:      `cat  $CLEVO_DIR/kb_brightness`"
+        echo ""
+        exit $1
+    else
+        echo ""
+        echo "  The required module is not loaded"
+        echo ""
+        exit 0
+    fi
+}
+
+clevo_list() {
+    echo ""
+    echo "Available color choices are"
+    echo "  $CLEVO_CLIST"
+    echo ""
+    exit 0
+}
+
+clevo_options(){
+    (( $# )) || clevo_usage
+    while getopts ":b:c:m:lvs" opt; do
+        case $opt in
+            b ) clevo_brightness=$OPTARG;;
+            c ) clevo_color=("$OPTARG")
+                until [[ $(eval "echo \${$OPTIND}") =~ ^-.* ]] || [ -z $(eval "echo \${$OPTIND}") ]; do
+                    clevo_color+=($(eval "echo \${$OPTIND}"))
+                    OPTIND=$((OPTIND + 1))
+                done
+                ;;
+            h ) clevo_usage; exit 0 ;;
+            l ) clevo_list; exit 0 ;;
+            m ) clevo_mode=$OPTARG;;
+            s ) clevo_status; exit 0 ;;
+            v ) clevo_version; exit 0 ;;
+            * ) clevo_usage; exit 0 ;;
+         esac
+    done
+}
+
+chk_clevo_mode() {
+if [[ -n "$clevo_mode" ]]; then 
+    if [[ "$clevo_mode" -le 7 ]]; then
+        if [[ "$clevo_mode" -ge 0 ]]; then :
+        else
+            echo "Only numbers between 0 and 7 can be used for the mode flag"
+            exit 0
+        fi
+    else
+        echo "Only numbers between 0 and 7 can be used for the mode flag"
+        exit 0
+    fi
+else
+    clevo_mode=`cat $CLEVO_DIR/kb_mode`
+fi
+}
+
+
+chk_clevo_brightness() {
+if [[ -n "$clevo_brightness" ]]; then
+    if [[ "$clevo_brightness" -le 10 ]]; then
+        if [[ "$clevo_brightness" -ge 1 ]]; then :
+        else
+            echo "Only numbers between 1 and 10 can be used for the brightness flag"
+            exit 0
+        fi
+    else
+        echo "Only numbers between 1 and 10 can be used for the brightness flag"
+        exit 0
+    fi
+else
+    clevo_brightness=`cat $CLEVO_DIR/kb_brightness`
+fi                
+}
+
+chk_clevo_color(){
+for i in ${clevo_color[@]} ; do
+    if grep -i -E -q "\b${i}\b" <<<${CLEVO_CLIST} >/dev/null 2>&1 ; then :
+    else
+        echo ""    
+        echo "$i is not a valid color."
+        echo ""
+        echo "Available color choices are"
+        echo "    $CLEVO_CLIST"
+        echo ""
+        exit 0
+    fi
+done
+
+if [[ -z "${clevo_color[0]}" ]]; then
+    clevo_color[0]=`awk {' print $1 '} < $CLEVO_DIR/kb_color`
+fi
+
+if [[ -z "${clevo_color[1]}" ]]; then
+    clevo_color[1]=`awk {' print $2 '} < $CLEVO_DIR/kb_color`
+fi
+
+if [[ -z "${clevo_color[2]}" ]]; then
+    clevo_color[2]=`awk {' print $3 '} < $CLEVO_DIR/kb_color`
+fi
+
+clevo_color="${clevo_color[0]} ${clevo_color[1]} ${clevo_color[2]}"
+}
+
+###################################################
+# Main
+###################################################
+
+clevo_options $@
+
+chk_clevo_mode
+chk_clevo_brightness
+chk_clevo_color
+
+
+if [[ "$clevo_mode" != `cat $CLEVO_DIR/kb_mode` ]]; then 
+    echo "$clevo_mode" > $CLEVO_DIR/kb_mode
+fi
+
+if [[ "$clevo_brightness" != `cat $CLEVO_DIR/kb_brightness` ]]; then
+    echo "$clevo_brightness" > $CLEVO_DIR/kb_brightness
+fi
+
+if [[ "${clevo_color,,}" != `cat $CLEVO_DIR/kb_color` ]]; then
+    echo "${clevo_color,,}" > $CLEVO_DIR/kb_color
+fi
+
+exit 0

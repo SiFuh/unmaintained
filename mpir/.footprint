@@ -1,0 +1,15 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/include/
+-rw-r--r--	root/root	usr/include/mpir.h
+-rw-r--r--	root/root	usr/include/mpirxx.h
+drwxr-xr-x	root/root	usr/lib/
+-rw-r--r--	root/root	usr/lib/libmpir.a
+-rwxr-xr-x	root/root	usr/lib/libmpir.la
+lrwxrwxrwx	root/root	usr/lib/libmpir.so -> libmpir.so.23.0.3
+lrwxrwxrwx	root/root	usr/lib/libmpir.so.23 -> libmpir.so.23.0.3
+-rwxr-xr-x	root/root	usr/lib/libmpir.so.23.0.3
+-rw-r--r--	root/root	usr/lib/libmpirxx.a
+-rwxr-xr-x	root/root	usr/lib/libmpirxx.la
+lrwxrwxrwx	root/root	usr/lib/libmpirxx.so -> libmpirxx.so.8.4.3
+lrwxrwxrwx	root/root	usr/lib/libmpirxx.so.8 -> libmpirxx.so.8.4.3
+-rwxr-xr-x	root/root	usr/lib/libmpirxx.so.8.4.3

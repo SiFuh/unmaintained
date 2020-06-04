@@ -1,0 +1,49 @@
+# Description: 	Realtek 8192eu Wireless Driver
+# URL:         	https://github.com/Mange/rtl8192eu-linux-driver
+# Packager:    
+# Maintainer:	Lin SiFuh, #crux at freenode dot net 	  
+# Depends on:  	git
+
+name=rtl8192eu-dkms
+version=4.4.0
+release=1
+sversion=b06d8b84bd34628386a26bae221ec12e4ab12fd0
+source=()
+
+build () {
+
+ 	cd ${PKGMK_SOURCE_DIR}
+	if [ ! -d "${name//-dkms}" ]; then
+		git clone -b realtek-${version//.0/.x} git://github.com/Mange/${name//-dkms}-linux-driver.git ${name//-dkms}
+		cd ${name//-dkms}
+		if [ `git rev-parse HEAD` != ${sversion} ]; then
+			git checkout ${sversion}
+		fi
+	else
+		cd ${name//-dkms}
+    if [ `git rev-parse HEAD` != ${sversion} ]; then
+      git checkout ${sversion}
+    fi
+	fi
+
+  cp -r ${PKGMK_SOURCE_DIR}/${name//-dkms} ${SRC}
+  cd ${SRC}/${name//-dkms}
+
+  mkdir -p ${PKG}/usr/src/${name//-dkms}-${version}
+  cp -pr * ${PKG}/usr/src/${name//-dkms}-${version}
+
+  mkdir -p ${PKG}/var/lib/dkms/${name//-dkms}/${version}/build
+  ln -s /usr/src/${name//-dkms}-${version}                    \
+        ${PKG}/var/lib/dkms/${name//-dkms}/${version}/source
+
+  rm ${PKG}/usr/src/${name//-dkms}-${version}/README.md
+
+  rm -rf ${PKG}/usr/src/${name//-dkms}-${version}/{runwpa,wlan0dhcp,ifcfg-wlan0}
+  mv ${PKG}/usr/src/${name//-dkms}-${version}/platform \
+     ${PKG}/usr/src/${name//-dkms}-${version}/platform.old
+  mkdir -p ${PKG}/usr/src/${name//-dkms}-${version}/platform
+  mv ${PKG}/usr/src/${name//-dkms}-${version}/platform.old/*ops* \
+     ${PKG}/usr/src/${name//-dkms}-${version}/platform
+  rm -rf ${PKG}/usr/src/${name//-dkms}-${version}/platform.old
+
+}

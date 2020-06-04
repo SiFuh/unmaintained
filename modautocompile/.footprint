@@ -1,0 +1,4 @@
+drwxr-xr-x	root/root	etc/
+-rw-r--r--	root/root	etc/modautocompile.conf
+drwxr-xr-x	root/root	sbin/
+-rw-r--r--	root/root	sbin/modautocompile.sh

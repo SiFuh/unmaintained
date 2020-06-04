@@ -1,0 +1,5 @@
+untrusted comment: verify with /etc/ports/yenjie.pub
+RWQ0NN0w0eo0uDcdJnKSk1+8vUlrmI4vJop5nUKmpGk6HP3vnOhporqWoIRVe/NU8DYsDZh6WJ9KJFGhDpN3+u50Qy+jsmVjcAY=
+SHA256 (Pkgfile) = 202fbc8a736f2f03805e801bbebc55ca561c09d8c45e46426e70c47cf9b00b78
+SHA256 (.footprint) = 98408c30fa0ad70ea8e5137448a5fe8adc630cb745a6c2766a50887b06409400
+SHA256 (libsepol-2.9.tar.gz) = a34b12b038d121e3e459b1cbaca3c9202e983137819c16baf63658390e3f1d5d

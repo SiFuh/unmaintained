@@ -1,0 +1,36 @@
+# Description: 	Realtek 8192eu Wireless Driver
+# URL:         	https://github.com/Mange/rtl8192eu-linux-driver
+# Packager:    
+# Maintainer:	Lin SiFuh, #crux at freenode dot net 	  
+# Depends on:  	git
+
+name=rtl8192eu-linux-driver
+version=4.4.0
+release=1
+sversion=b06d8b84bd34628386a26bae221ec12e4ab12fd0
+source=()
+
+build () {
+
+ 	cd $PKGMK_SOURCE_DIR
+	if [ ! -d "$name" ]; then
+		git clone -b realtek-${version//.0/.x} git://github.com/Mange/${name}.git $name
+		cd $name
+		if [ `git rev-parse HEAD` != $sversion ]; then
+			git checkout $sversion
+		fi
+	else
+		cd $name
+                if [ `git rev-parse HEAD` != $sversion ]; then
+                        git checkout $sversion
+                fi
+	fi
+
+        cp -r $PKGMK_SOURCE_DIR/$name $SRC
+        cd $SRC/$name
+
+        make
+        mkdir -p $PKG/lib/modules/`uname -r`/kernel/drivers/net/wireless/
+        install -p -m 644 8192eu.ko -t $PKG/lib/modules/`uname -r`/kernel/drivers/net/wireless/
+
+}
