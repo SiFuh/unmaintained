@@ -21,6 +21,8 @@ d:sabnzbd3
 d:seamonkey-bin
 d:smokeping
 d:tuxedo-keyboard
+d:faust
+d:expressvpn
 f:2e10ca06b3bed0cfd374ba6727d2e834:clevo-xsm-wmi/clevo-keys
 f:10fd276e69c4e30fd9a8cdc68e15fad8:clevo-xsm-wmi/Pkgfile
 f:66231c799e4788e09798e5b1256d5c73:clevo-xsm-wmi/.footprint
@@ -112,3 +114,11 @@ f:ea717d12c4c99229c944870c9bf8d064:tuxedo-keyboard/.signature
 f:aa723786921f4375d1114c773bbcbf3c:tuxedo-keyboard/.footprint
 f:38b8b239ebfbccd8e3dd1d7adb747d52:unmaintained.httpup
 f:d7b4fd2fdc762af7f745093d41ccea03:README
+f:210d4b2dce552d55f6c8a91a949675e5:faust/Pkgfile
+f:27d857c7b26cb692239b4ed29d150704:faust/faust-2.20.2-fix_c-api.patch
+f:af775b782d3987c61f535ea793d7cf05:faust/faust-2.20.2-llvm10.patch
+f:f674616d8aa66a3e799951d980d12d97:faust/.footprint
+f:ef9aa05670bc677b558152f71478df38:expressvpn/.footprint
+f:ca565425110ba332504925d685c8347f:expressvpn/Pkgfile
+f:44c1931635ffc64cbf19a327d58a9443:expressvpn/evpn
+f:7159672aa7d443189845862618a1cb6a:expressvpn/.signature

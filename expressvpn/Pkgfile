@@ -1,0 +1,40 @@
+# Description:  ExpressVPN's Proprietary VPN client for Linux
+# URL:          https://expressvpn.com
+# Packager:
+# Maintainer:   Lin SiFuh, #crux at freenode dot net
+# Depends on:   inetutil
+
+name=expressvpn
+version=2.5.0.505_1
+release=1
+source=(https://download.expressvpn.xyz/clients/linux/${name}_${version/_/-}_amd64.deb\
+        evpn)
+
+build() {
+
+  cd ${SRC}
+  ar -xv ${PKGMK_SOURCE_DIR}/${name}_${version/_/-}_amd64.deb
+  bsdtar -C ${PKG} -xf ${SRC}/data.tar.gz -s ":/usr/sbin:/usr/bin:"
+
+  install -dm755 ${PKG}/var/lib/expressvpn/certs
+
+  # ExpressVPN's daemon requires libnm from NetworkManager. It has been 
+  # removed, as there is no point in using this program if you have 
+  # NetworkManager installed because it can handle ExpressVPN very well. 
+  # This port is specifically for those who wish to use ExpressVPN 
+  # from the command line.
+
+  mkdir ${PKG}/usr/sbin
+  mv ${PKG}/usr/bin/expressvpnd ${PKG}/usr/sbin/
+
+  install -d ${PKG}/etc/rc.d
+  install -m 0755 ${SRC}/evpn ${PKG}/etc/rc.d
+
+
+  rm -r ${PKG}/usr/share/doc/                                          \
+        ${PKG}/usr/lib/expressvpn/expressvpn.init                      \
+        ${PKG}/usr/lib/expressvpn/{chrome,firefox}                     \
+        ${PKG}/usr/bin/{expressvpn-browser-helper,expressvpn-agent}    \
+        ${PKG}/usr/lib/expressvpn/{expressvpn.service,bash-completion}
+ 
+}

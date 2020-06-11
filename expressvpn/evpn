@@ -1,0 +1,37 @@
+#!/bin/sh
+
+SSD=/sbin/start-stop-daemon
+PROG=/usr/sbin/expressvpnd
+PID=/var/run/expressvpn.pid
+OPTS="--client-version 2.5.0 --client-build 505"
+
+print_status() {
+  $SSD --status --pidfile $2
+  case $? in
+  0) echo "$1 is running with pid $(cat $2)" ;;
+  1) echo "$1 is not running but the pid file $2 exists" ;;
+  3) echo "$1 is not running" ;;
+  4) echo "Unable to determine the program status" ;;
+  esac
+}
+
+case $1 in
+start)
+   $SSD --start --background --make-pidfile --pidfile $PID --exec $PROG -- $OPTS
+  ;;
+stop)
+  $SSD --stop --retry 10 --pidfile $PID
+  ;;
+restart)
+  $0 stop
+  $0 start
+  ;;
+status)
+  print_status $PROG $PID
+  ;;
+*)
+  echo "usage: $0 [start|stop|restart|status]"
+  ;;
+esac
+
+# End of file
