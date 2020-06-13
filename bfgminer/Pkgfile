@@ -1,0 +1,34 @@
+# Description:  Bitcoin miner for FPGA/GPU/CPU Bitcoin mining
+# URL:          https://bitcointalk.org/?topic=877081
+# Packager:
+# Maintainer:   Lin SiFuh, #crux at freenode dot net
+# Depends on:   jansson libevent libmicrohttpd libusb lm_sensors yasm uthash
+
+name=bfgminer
+version=5.5.0
+release=1
+source=(http://bfgminer.org/files/${version}/${name}-${version}.txz \
+        remove-dangerous-rpath-00.patch)
+
+build() {
+
+  cd ${name}-${version}
+  patch -p0 -i ${SRC}/remove-dangerous-rpath-00.patch
+
+  ./configure --enable-bfsb      \
+              --prefix=/usr      \
+              --enable-scrypt    \
+              --enable-opencl    \
+              --enable-metabank  \
+              --enable-cpumining \
+              --sbindir=/usr/bin \
+              --with-udevrulesdir=/usr/lib/udev/rules.d
+              # --enable-knc (FS#33640)
+
+  make
+  make DESTDIR=${PKG} install
+
+  rm -rf ${PKG}/usr/share/doc
+  rm -rf ${PKG}/usr/share/doc/libbase58
+
+}

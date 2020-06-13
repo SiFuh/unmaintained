@@ -1,0 +1,6 @@
+untrusted comment: verify with /etc/ports/yenjie.pub
+RWQ0NN0w0eo0uP51ODZtyKWpGCgvQSgFEDd3kWN8U4xMbFzGC2ISNwcWjva5ZKSQ9YzpsbDzB0EgVvdlJDBm4qHi3nJ85/F96ww=
+SHA256 (Pkgfile) = c9b038f0ebbccc66680ec412b1eb56e2a9ab0333bb47b700081da6bc5237042d
+SHA256 (.footprint) = 94dd062e4aac820e6f6f53f011dfac59f6e1eb994beebdb8894f9815056a851d
+SHA256 (bfgminer-5.5.0.txz) = ac254da9a40db375cb25cacdd2f84f95ffd7f442e31d2b9a7f357a48d32cc681
+SHA256 (remove-dangerous-rpath-00.patch) = ecb0f23da411aaf5cac3e0087e22d94b88129ae63824340e7cbe5e04d7133237

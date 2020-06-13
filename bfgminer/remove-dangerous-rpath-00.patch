@@ -1,0 +1,20 @@
+--- configure.orig	2020-06-13 14:31:50.641867815 +0800
++++ configure	2020-06-13 14:33:47.894394365 +0800
+@@ -14252,7 +14252,7 @@
+ ac_abs_srcdir=$ac_abs_top_srcdir$ac_dir_suffix
+ 
+ 	libbase58_CFLAGS='-I'"${ac_abs_top_srcdir}"'/libbase58'
+-	libbase58_LIBS='-L'"${ac_abs_top_builddir}"'/libbase58/.libs -Wl,-rpath,\$$ORIGIN/libbase58/.libs'"$origin_LDFLAGS"'  -lbase58'
++  libbase58_LIBS='-L'"${ac_abs_top_builddir}"'/libbase58/.libs -Wl,-rpath,/usr/lib'"$origin_LDFLAGS"'  -lbase58'
+ 	libbase58_SUBDIRS=libbase58
+ 	libbase58_EXTRADEPS=libbase58_directory
+ 	BUNDLED_LIB_RULES="$BUNDLED_LIB_RULES
+@@ -14521,7 +14521,7 @@
+ ac_abs_srcdir=$ac_abs_top_srcdir$ac_dir_suffix
+ 
+ 	libblkmaker_CFLAGS='-I'"${ac_abs_top_srcdir}"'/libblkmaker'
+-	libblkmaker_LIBS='-L'"${ac_abs_top_builddir}"'/libblkmaker/.libs -Wl,-rpath,\$$ORIGIN/libblkmaker/.libs'"$origin_LDFLAGS"'  -lblkmaker_jansson-0.1 -lblkmaker-0.1'
++  libblkmaker_LIBS='-L'"${ac_abs_top_builddir}"'/libblkmaker/.libs -Wl,-rpath,/usr/lib'"$origin_LDFLAGS"'  -lblkmaker_jansson-0.1 -lblkmaker-0.1'
+ 	libblkmaker_SUBDIRS=libblkmaker
+ 	libblkmaker_EXTRADEPS=libblkmaker_directory
+ 	BUNDLED_LIB_RULES="$BUNDLED_LIB_RULES

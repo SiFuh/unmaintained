@@ -23,6 +23,7 @@ d:smokeping
 d:tuxedo-keyboard
 d:faust
 d:expressvpn
+d:bfgminer
 f:2e10ca06b3bed0cfd374ba6727d2e834:clevo-xsm-wmi/clevo-keys
 f:10fd276e69c4e30fd9a8cdc68e15fad8:clevo-xsm-wmi/Pkgfile
 f:66231c799e4788e09798e5b1256d5c73:clevo-xsm-wmi/.footprint
@@ -122,3 +123,7 @@ f:ef9aa05670bc677b558152f71478df38:expressvpn/.footprint
 f:ca565425110ba332504925d685c8347f:expressvpn/Pkgfile
 f:44c1931635ffc64cbf19a327d58a9443:expressvpn/evpn
 f:7159672aa7d443189845862618a1cb6a:expressvpn/.signature
+f:bf15f66e1219a2e55fa6fadcfbae2d9b:bfgminer/.footprint
+f:8fa0344c56999c8af96ad2a4ac541131:bfgminer/.signature
+f:f7e5f977938c937ae8582ab9dedaa780:bfgminer/Pkgfile
+f:ef5e3da9d46b3587b36e806e0ead10d4:bfgminer/remove-dangerous-rpath-00.patch
