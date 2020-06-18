@@ -1,0 +1,23 @@
+# Description:  Video Desktop Screen Recorder 
+# URL:          http://linuxecke.volkoh.de/vokoscreen/vokoscreen.html 
+# Packager:    
+# Maintainer:   Lin SiFuh, #crux at freenode dot net 	  
+# Depends on:   qt5 
+
+name=vokoscreen-ng
+version=3.0.4
+release=1
+source=(https://github.com/vkohaupt/${name//-ng}NG/archive/${version}.tar.gz)
+
+build () {
+
+  cd ${name//-ng}NG-${version}/src
+
+  cp pictures/logo/logo.png pictures/screencast/author.png
+	
+  qmake-qt5 
+  make
+  
+  install -D -m 755 vokoscreenNG ${PKG}/usr/bin/vokoscreen-ng
+
+}
