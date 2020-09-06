@@ -1,0 +1,36 @@
+# Description:   XML-RPC for C and C++
+# URL:           http://xmlrpc-c.sourceforge.net/
+# Maintainer:    Lin SiFuh, #crux at freenode dot net
+# Depends on:    setconf
+
+name=xmlrpc-c
+version=1.51.06
+release=1
+source=(https://sourceforge.net/projects/${name}/files/Xmlrpc-c%20Super%20Stable/${version}/${name}-${version}.tgz)
+
+build() {
+
+  cd ${name}-${version}
+
+  ./configure --prefix=/usr            \
+              --enable-cplusplus       \
+              --disable-cgi-server     \
+              --mandir=/usr/share/man  \
+              --disable-libwww-client  \
+              --disable-wininet-client \
+              --disable-libxml2-backend
+
+  mkdir -p include/curl
+  touch include/curl/types.h
+
+  make CFLAGS_PERSONAL="$CFLAGS -fPIC -w" CXXFLAGS_PERSONAL="$CXXFLAGS -fPIC -w"
+  make -C tools CFLAGS_PERSONAL="$CFLAGS -fPIC -w" CXXFLAGS_PERSONAL="$CXXFLAGS -fPIC -w"
+
+  make DESTDIR="${PKG}" install
+  make DESTDIR="${PKG}" -C tools install
+
+  # Remove references to build directory
+  setconf "${PKG}/usr/bin/xmlrpc-c-config" BLDDIR ''
+  setconf "${PKG}/usr/bin/xmlrpc-c-config" ABS_SRCDIR ''
+
+}
