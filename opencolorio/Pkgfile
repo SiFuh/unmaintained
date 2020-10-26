@@ -1,0 +1,37 @@
+# Description:   A color management framework for visual effects and animation
+# URL:           https://opencolorio.org
+# Maintainer:    Lin SiFuh, #crux at freenode dot net
+# Depends on:    lcms2 tinyxml boost cmake python3
+
+name=opencolorio
+version=1.1.1
+release=1
+source=(https://github.com/AcademySoftwareFoundation/OpenColorIO/archive/v${version}.tar.gz
+        cmake-location.patch)
+
+build() {
+
+  mv OpenColorIO-* ${name}-${version}
+
+  cd ${name}-${version}
+
+  sed -i "s/-Werror//g" src/core/CMakeLists.txt
+  sed -i "s/-Werror//g" src/pyglue/CMakeLists.txt
+  sed -i "s/push(hidden)/push(default)/g" src/core/OCIOYaml.cpp
+
+  patch -Np1 -i "${SRC}"/cmake-location.patch
+
+  mkdir -p build && cd build
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_LIBDIR=lib \
+    -DUSE_EXTERNAL_TINYXML=ON \
+    -DUSE_EXTERNAL_LCMS=ON
+  make
+
+  make DESTDIR="${PKG}" install
+
+  mv "${PKG}"/usr/lib/static/libOpenColorIO.a "${PKG}"/usr/lib/libOpenColorIO.a
+  rmdir "${PKG}"/usr/lib/static
+
+}

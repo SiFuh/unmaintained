@@ -1,0 +1,24 @@
+# Description:   Collection of high-performance ray tracing kernels
+# URL:           https://embree.github.io/
+# Maintainer:    Lin SiFuh, #crux at freenode dot net
+# Depends on:    intel-tbb cmake ispc freeglut xorg-libxmu openexr
+
+name=embree
+version=3.12.1
+release=1
+source=(https://github.com/embree/embree/archive/v${version}/${name}-${version}.tar.gz)
+
+build() {
+
+  cmake -B build -S ${name}-${version} \
+        -DCMAKE_INSTALL_PREFIX=/usr    \
+        -DCMAKE_INSTALL_LIBDIR=lib     \
+        -DCMAKE_BUILD_TYPE=Release     \
+        -DEMBREE_TUTORIALS=OFF         \
+        -DEMBREE_MAX_ISA="AVX512SKX"
+
+    make -C build
+
+    make -C build DESTDIR="${PKG}" install
+
+}

@@ -1,0 +1,31 @@
+# Description:   A compiler for high-performance SIMD programming on the CPU
+# URL:           https://ispc.github.io/
+# Maintainer:    Lin SiFuh, #crux at freenode dot net
+# Depends on:    llvm clang python3 glibc-32 cmake libtinfo-compat
+
+name=ispc
+version=1.13.0
+release=1
+source=(https://github.com/ispc/${name}/archive/v${version}/${name}-${version}.tar.gz
+        ispc-libclang-cpp.patch)
+
+build() {
+
+  cd ${name}-${version}
+  
+  patch -p1 -i ../ispc-libclang-cpp.patch
+  sed -i '/debug-phase/d' tests/lit-tests/arg_parsing_errors.ispc
+
+  cd ${SRC}
+
+  cmake -B build -S ${name}-${version} \
+        -DCMAKE_INSTALL_PREFIX=/usr    \
+        -DISPC_INCLUDE_EXAMPLES=OFF    \
+        -DISPC_NO_DUMPS=ON             \
+        -DARM_ENABLED=OFF
+
+  make -C build
+
+  make -C build DESTDIR="${PKG}" install
+
+}
