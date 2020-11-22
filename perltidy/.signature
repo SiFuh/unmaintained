@@ -1,0 +1,5 @@
+untrusted comment: verify with /etc/ports/yenjie.pub
+RWQ0NN0w0eo0uIzUPn+mtLj7bT01N0k6h53eSrIpCuJCu0ZU5um0HvMNAGQqFSUEq9Q+/llmRONYMhwhrNdBW7zg+rN8c4F5tg0=
+SHA256 (Pkgfile) = eb47c04288ed038439084a4c193c3ea16df60f089c63154b4401a6c661a252c7
+SHA256 (.footprint) = b27b02485cb4a859e157b929b319b6a814d1d6656a33e8b00563e23d1d61952f
+SHA256 (Perl-Tidy-20201001.tar.gz) = 0873ebb300239d792fb8e67164b0e04bb8fb1ff153659630d321c0b4a1dc9a12
