@@ -1,0 +1,6 @@
+untrusted comment: verify with /etc/ports/yenjie.pub
+RWQ0NN0w0eo0uLl4XqSOIzgjjpaSrsFouZmhWbdM4t/Eb29TXoM96unlznHOB7LIZjcRhcbxeCZzYcD8Sb9Jk9YkFHqp9vpeHQ4=
+SHA256 (Pkgfile) = a0c2d96b6406eafcb4c90667c90c80aa1b9ac95138cff1e98509f62c8cf3dd27
+SHA256 (.footprint) = 4c270760dd032747a45795b8b4f6f43899217accba9e177cbd5fe778e2e0f732
+SHA256 (hcxtools-35-3.5.0.tar.gz) = 5bb7abcb42a38fb6d87414b56854967361ff6bf840feab9987d92095f7ce1758
+SHA256 (Makefile.patch) = 15ac3c0b7763b743dcc520c4aa9ebf5591b30881ced5181a9a9cf09c3a1b8722

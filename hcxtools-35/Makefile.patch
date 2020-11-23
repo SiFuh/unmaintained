@@ -1,0 +1,198 @@
+--- hcxtools-3.orig/Makefile	2020-03-10 11:16:59.109999957 +0000
++++ hcxtools3/Makefile	2020-03-10 11:19:03.869999915 +0000
+@@ -17,116 +17,116 @@
+ 
+ build:
+ ifeq ($(GPIOSUPPORT), on)
+-	$(CC) $(CFLAGS) -DDOGPIOSUPPORT -o pioff pioff.c $(LFLAGS)
++	$(CC) $(CFLAGS) -DDOGPIOSUPPORT -o pioff3 pioff.c $(LFLAGS)
+ endif
+ 
+ ifeq ($(DOACTIVE), on)
+-	$(CC) $(CFLAGS) -DDOACTIVE -o wlandump wlandump.c -lpcap $(LFLAGS)
++	$(CC) $(CFLAGS) -DDOACTIVE -o wlandump3 wlandump.c -lpcap $(LFLAGS)
+ endif
+ 
+ ifeq ($(DOSTATUS), on)
+-	$(CC) $(CFLAGS) -DDOSTATUS -DDOACTIVE -o wlandump-sts wlandump.c -lpcap $(LFLAGS)
+-	$(CC) $(CFLAGS) -DDOSTATUS -o wlanscan-sts wlandump.c -lpcap $(LFLAGS)
++	$(CC) $(CFLAGS) -DDOSTATUS -DDOACTIVE -o wlandump3-sts wlandump.c -lpcap $(LFLAGS)
++	$(CC) $(CFLAGS) -DDOSTATUS -o wlanscan3-sts wlandump.c -lpcap $(LFLAGS)
+ endif
+-	$(CC) $(CFLAGS) -o wlanscan wlandump.c -lpcap $(LFLAGS)
+-	$(CC) $(CFLAGS) -o wlancapinfo wlancapinfo.c -lpcap
+-	$(CC) $(CFLAGS) -o wlancap2hcx wlancap2hcx.c -lpcap
+-	$(CC) $(CFLAGS) -o wlanhcx2cap wlanhcx2cap.c -lpcap
+-	$(CC) $(CFLAGS) -o wlanhc2hcx wlanhc2hcx.c
+-	$(CC) $(CFLAGS) -o wlanhcx2essid wlanhcx2essid.c
+-	$(CC) $(CFLAGS) -o wlanhcx2ssid wlanhcx2ssid.c
+-	$(CC) $(CFLAGS) -o wlanhcx2john wlanhcx2john.c
+-	$(CC) $(CFLAGS) -o wlanhcxinfo wlanhcxinfo.c
+-	$(CC) $(CFLAGS) -o wlanhcxmnc wlanhcxmnc.c
+-	$(CC) $(CFLAGS) -o whoismac whoismac.c -lcurl
+-	$(CC) $(CFLAGS) -o pwhash pwhash.c -lcrypto
++	$(CC) $(CFLAGS) -o wlanscan3 wlandump.c -lpcap $(LFLAGS)
++	$(CC) $(CFLAGS) -o wlancapinfo3 wlancapinfo.c -lpcap
++	$(CC) $(CFLAGS) -o wlancap2hcx3 wlancap2hcx.c -lpcap
++	$(CC) $(CFLAGS) -o wlanhcx2cap3 wlanhcx2cap.c -lpcap
++	$(CC) $(CFLAGS) -o wlanhc2hcx3 wlanhc2hcx.c
++	$(CC) $(CFLAGS) -o wlanhcx2essid3 wlanhcx2essid.c
++	$(CC) $(CFLAGS) -o wlanhcx2ssid3 wlanhcx2ssid.c
++	$(CC) $(CFLAGS) -o wlanhcx2john3 wlanhcx2john.c
++	$(CC) $(CFLAGS) -o wlanhcxinfo3 wlanhcxinfo.c
++	$(CC) $(CFLAGS) -o wlanhcxmnc3 wlanhcxmnc.c
++	$(CC) $(CFLAGS) -o whoismac3 whoismac.c -lcurl
++	$(CC) $(CFLAGS) -o pwhash3 pwhash.c -lcrypto
+ 
+ 
+ install: build
+ ifeq ($(GPIOSUPPORT), on)
+-	install -D -m 0755 pioff $(INSTALLDIR)/pioff
++	install -D -m 0755 pioff3 $(INSTALLDIR)/pioff3
+ endif
+ 
+ ifeq ($(DOACTIVE), on)
+-	install -D -m 0755 wlandump $(INSTALLDIR)/wlandump
++	install -D -m 0755 wlandump3 $(INSTALLDIR)/wlandump3
+ endif
+ 
+ ifeq ($(DOSTATUS), on)
+-	install -D -m 0755 wlandump-sts $(INSTALLDIR)/wlandump-sts
+-	install -D -m 0755 wlanscan-sts $(INSTALLDIR)/wlanscan-sts
++	install -D -m 0755 wlandump3-sts $(INSTALLDIR)/wlandump3-sts
++	install -D -m 0755 wlanscan3-sts $(INSTALLDIR)/wlanscan3-sts
+ endif
+-	install -D -m 0755 wlanscan $(INSTALLDIR)/wlanscan
+-	install -D -m 0755 wlancapinfo $(INSTALLDIR)/wlancapinfo
+-	install -D -m 0755 wlancap2hcx $(INSTALLDIR)/wlancap2hcx
+-	install -D -m 0755 wlanhcx2cap $(INSTALLDIR)/wlanhcx2cap
+-	install -D -m 0755 wlanhc2hcx $(INSTALLDIR)/wlanhc2hcx
+-	install -D -m 0755 wlanhcx2essid $(INSTALLDIR)/wlanhcx2essid
+-	install -D -m 0755 wlanhcx2ssid $(INSTALLDIR)/wlanhcx2ssid
+-	install -D -m 0755 wlanhcx2john $(INSTALLDIR)/wlanhcx2john
+-	install -D -m 0755 wlanhcxinfo $(INSTALLDIR)/wlanhcxinfo
+-	install -D -m 0755 wlanhcxmnc $(INSTALLDIR)/wlanhcxmnc
+-	install -D -m 0755 whoismac $(INSTALLDIR)/whoismac
+-	install -D -m 0755 pwhash $(INSTALLDIR)/pwhash
++	install -D -m 0755 wlanscan3 $(INSTALLDIR)/wlanscan3
++	install -D -m 0755 wlancapinfo3 $(INSTALLDIR)/wlancapinfo3
++	install -D -m 0755 wlancap2hcx3 $(INSTALLDIR)/wlancap2hcx3
++	install -D -m 0755 wlanhcx2cap3 $(INSTALLDIR)/wlanhcx2cap3
++	install -D -m 0755 wlanhc2hcx3 $(INSTALLDIR)/wlanhc2hcx3
++	install -D -m 0755 wlanhcx2essid3 $(INSTALLDIR)/wlanhcx2essid3
++	install -D -m 0755 wlanhcx2ssid3 $(INSTALLDIR)/wlanhcx2ssid3
++	install -D -m 0755 wlanhcx2john3 $(INSTALLDIR)/wlanhcx2john3
++	install -D -m 0755 wlanhcxinfo3 $(INSTALLDIR)/wlanhcxinfo3
++	install -D -m 0755 wlanhcxmnc3 $(INSTALLDIR)/wlanhcxmnc3
++	install -D -m 0755 whoismac3 $(INSTALLDIR)/whoismac3
++	install -D -m 0755 pwhash3 $(INSTALLDIR)/pwhash3
+ 
+ ifeq ($(GPIOSUPPORT), on)
+-	rm -f pioff
++	rm -f pioff3
+ endif
+-	rm -f wlandump
+-	rm -f wlandump-sts
+-	rm -f wlanscan
+-	rm -f wlanscan-sts
+-	rm -f wlancapinfo
+-	rm -f wlancap2hcx
+-	rm -f wlanhcx2cap
+-	rm -f wlanhc2hcx
+-	rm -f wlanhcx2essid
+-	rm -f wlanhcx2ssid
+-	rm -f wlanhcx2john
+-	rm -f wlanhcxinfo
+-	rm -f wlanhcxmnc
+-	rm -f whoismac
+-	rm -f pwhash
++	rm -f wlandump3
++	rm -f wlandump3-sts
++	rm -f wlanscan3
++	rm -f wlanscan3-sts
++	rm -f wlancapinfo3
++	rm -f wlancap2hcx3
++	rm -f wlanhcx2cap3
++	rm -f wlanhc2hcx3
++	rm -f wlanhcx2essid3
++	rm -f wlanhcx2ssid3
++	rm -f wlanhcx2john3
++	rm -f wlanhcxinfo3
++	rm -f wlanhcxmnc3
++	rm -f whoismac3
++	rm -f pwhash3
+ 	rm -f *.o *~
+ 
+ 
+ clean:
+ ifeq ($(GPIOSUPPORT), on)
+-	rm -f pioff
++	rm -f pioff3
+ endif
+-	rm -f wlandump
+-	rm -f wlandump-sts
+-	rm -f wlanscan
+-	rm -f wlanscan-sts
+-	rm -f wlancapinfo
+-	rm -f wlancap2hcx
+-	rm -f wlanhcx2cap
+-	rm -f wlanhc2hcx
+-	rm -f wlanhcx2essid
+-	rm -f wlanhcx2ssid
+-	rm -f wlanhcx2john
+-	rm -f wlanhcxinfo
+-	rm -f wlanhcxmnc
+-	rm -f whoismac
+-	rm -f pwhash
++	rm -f wlandump3
++	rm -f wlandump3-sts
++	rm -f wlanscan3
++	rm -f wlanscan3-sts
++	rm -f wlancapinfo3
++	rm -f wlancap2hcx3
++	rm -f wlanhcx2cap3
++	rm -f wlanhc2hcx3
++	rm -f wlanhcx2essid3
++	rm -f wlanhcx2ssid3
++	rm -f wlanhcx2john3
++	rm -f wlanhcxinfo3
++	rm -f wlanhcxmnc3
++	rm -f whoismac3
++	rm -f pwhash3
+ 	rm -f *.o *~
+ 
+ 
+ uninstall:
+ ifeq ($(GPIOSUPPORT), on)
+-	rm -f $(INSTALLDIR)/pioff
++	rm -f $(INSTALLDIR)/pioff3
+ endif
+-	rm -f $(INSTALLDIR)/wlandump
+-	rm -f $(INSTALLDIR)/wlandump-sts
+-	rm -f $(INSTALLDIR)/wlanscan
+-	rm -f $(INSTALLDIR)/wlanscan-sts
+-	rm -f $(INSTALLDIR)/wlancapinfo
+-	rm -f $(INSTALLDIR)/wlancap2hcx
+-	rm -f $(INSTALLDIR)/wlanhcx2cap
+-	rm -f $(INSTALLDIR)/wlanhc2hcx
+-	rm -f $(INSTALLDIR)/wlanhcx2essid
+-	rm -f $(INSTALLDIR)/wlanhcx2ssid
+-	rm -f $(INSTALLDIR)/wlanhcx2john
+-	rm -f $(INSTALLDIR)/wlanhcxinfo
++	rm -f $(INSTALLDIR)/wlandump3
++	rm -f $(INSTALLDIR)/wlandump3-sts
++	rm -f $(INSTALLDIR)/wlanscan3
++	rm -f $(INSTALLDIR)/wlanscan3-sts
++	rm -f $(INSTALLDIR)/wlancapinfo3
++	rm -f $(INSTALLDIR)/wlancap2hcx3
++	rm -f $(INSTALLDIR)/wlanhcx2cap3
++	rm -f $(INSTALLDIR)/wlanhc2hcx3
++	rm -f $(INSTALLDIR)/wlanhcx2essid3
++	rm -f $(INSTALLDIR)/wlanhcx2ssid3
++	rm -f $(INSTALLDIR)/wlanhcx2john3
++	rm -f $(INSTALLDIR)/wlanhcxinfo3
+ 	rm -f $(INSTALLDIR)/wlanhcxmnc
+-	rm -f $(INSTALLDIR)/whoismac
+-	rm -f $(INSTALLDIR)/pwhash
++	rm -f $(INSTALLDIR)/whoismac3
++	rm -f $(INSTALLDIR)/pwhash3
