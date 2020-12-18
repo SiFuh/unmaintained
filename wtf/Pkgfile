@@ -1,0 +1,28 @@
+# Description:   Acronym dictionary, with additions from NetBSD and wikipedia
+# URL:           http://www.mu.org/~mux/
+# Maintainer:    Lin SiFuh, #crux at freenode dot net
+# Depends on:
+
+name=wtf
+version=20201117
+sversion=0623381d92b2c5d3e94b00c9eb06fb5d4d85d014
+release=1
+source=(https://sourceforge.net/projects/bsdwtf/files/${name}-${version}.tar.gz \
+        https://raw.github.com/keenerd/${name}/${sversion}/acronyms.computing)
+
+build() {
+
+  cd "${name}"-"${version}"
+
+  sed -i 's|misc|wtf|' "${name}"
+
+  install -Dm755 "${name}"             "${PKG}"/usr/bin/"${name}"
+  install -Dm644 "${name}".6           "${PKG}"/usr/share/man/man6/"${name}".6
+
+  install -Dm644 acronyms "${PKG}"/usr/share/"${name}"/acronyms
+  install -Dm644 acronyms.comp "${PKG}"/usr/share/"${name}"/acronyms.comp
+  install -Dm644 acronyms-o.real "${PKG}"/usr/share/"${name}"/acronyms-o
+
+  install -m644 ../acronyms.computing "${PKG}"/usr/share/"${name}"/
+
+}

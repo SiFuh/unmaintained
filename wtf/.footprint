@@ -1,0 +1,12 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/wtf
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man6/
+-rw-r--r--	root/root	usr/share/man/man6/wtf.6.gz
+drwxr-xr-x	root/root	usr/share/wtf/
+-rw-r--r--	root/root	usr/share/wtf/acronyms
+-rw-r--r--	root/root	usr/share/wtf/acronyms-o
+-rw-r--r--	root/root	usr/share/wtf/acronyms.comp
+-rw-r--r--	root/root	usr/share/wtf/acronyms.computing
