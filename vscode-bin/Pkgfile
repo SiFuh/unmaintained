@@ -1,0 +1,49 @@
+# Description:   Visual Studio Code (vscode): Editor for building and debugging modern web and cloud applications (official binary version)
+# URL:           https://code.visualstudio.com/
+# Maintainer:    Lin SiFuh, #crux at freenode dot net
+# Depends on:    libxkbfile gnupg gtk3 libsecret nss gcc-libs libnotify libxss glibc lsof shared-mime-info xdg-utils
+
+name=vscode-bin
+_name=visual-studio-code
+version=1.55.1
+sversion=1617808414
+release=1
+source=(https://packages.microsoft.com/repos/vscode/pool/main/c/code/code_${version}-${sversion}_amd64.deb
+        visual-studio-code.desktop
+        visual-studio-code-workspace.xml
+        visual-studio-code-url-handler.desktop)
+
+build() {
+
+  cd "${SRC}"
+  mkdir -p "${PKG}"/opt/{bin,share}
+  ar -xv "${PKGMK_SOURCE_DIR}"/code_"${version}"-"${sversion}"_amd64.deb
+  tar -xpvf data.tar.xz
+
+  install -d "${PKG}"/opt/"${_name}"
+  install -d "${PKG}"/opt/bin
+  install -d "${PKG}"/opt/share/applications
+  install -d "${PKG}"/opt/share/icons
+  install -d "${PKG}"/opt/share/mime/packages
+
+  install -m644 "${SRC}"/usr/share/code/resources/app/resources/linux/code.png \
+                "${PKG}"/opt/share/icons/"${_name}".png
+  install -m644 "${SRC}"/"${_name}".desktop \
+                "${PKG}"/opt/share/applications/"${_name}".desktop
+  install -m644 "${SRC}"/"${_name}"-url-handler.desktop \
+                "${PKG}"/opt/share/applications/"${_name}"-url-handler.desktop
+  install -m644 "${SRC}"/"${_name}"-workspace.xml \
+                "${PKG}"/opt/share/mime/packages/"${name}"-workspace.xml
+
+  cp -r "${SRC}"/usr/share/* "${PKG}"/opt/"${_name}" -R
+  ln -s /opt/"${_name}"/code/bin/code "${PKG}"/opt/bin/code
+
+  rm "${PKG}"/opt/visual-studio-code/code/resources/app/LICENSES.chromium.html
+
+  find "${PKG}" \(           \
+        -name '*.txt' -o     \
+        -name '*.md'  -o     \
+        -name '*.rtf'        \
+        \) -exec rm -rf '{}' \; || true
+
+}
