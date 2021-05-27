@@ -1,0 +1,20 @@
+# Description:   EPSON Image Scan! data files
+# URL:           http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX
+# Maintainer:    Lin SiFuh, #crux at freenode dot net
+# Depends on:
+
+name=iscan-data
+version=1.39.2-1
+release=1
+source=(http://support.epson.net/linux/src/scanner/${name%-*}/${name}_${version}.tar.gz)
+
+build() {
+
+  cd "${name}"-"${version%-*}"
+
+  ./configure --prefix=/usr
+
+  make
+  make DESTDIR="${PKG}" install
+
+}

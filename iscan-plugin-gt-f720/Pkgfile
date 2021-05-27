@@ -1,0 +1,28 @@
+# Description:   EPSON Image Scan! plugin for Epson scanners (GT-F720, GT-S620, Perfection V30, Perfection V300 Photo)
+# URL:           http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX
+# Maintainer:    Lin SiFuh, #crux at freenode dot net
+# Depends on:    iscan
+
+name=iscan-plugin-gt-f720
+version=2.30.4
+release=1
+source=(https://download2.ebz.epson.net/iscan/plugin/gt-f720/deb/x64/iscan-gt-f720-bundle-${version}.x64.deb.tar.gz)
+
+build() {
+
+  cd iscan-gt-f720-bundle-"${version}".x64.deb/plugins
+  
+  bsdtar -xf esci-interpreter-gt-f720_1.0.0-1_amd64.deb
+  bsdtar -xf data.tar.gz
+
+  cd usr
+  install -m 755 -d "${PKG}"/usr/lib/iscan
+  install -m 644 -t "${PKG}"/usr/lib/iscan lib/esci/libesci-interpreter-gt-f720.so.0.0.0
+  ln -s libesci-interpreter-gt-f720.so.0.0.0 "${PKG}"/usr/lib/iscan/libesci-interpreter-gt-f720.so
+  ln -s libesci-interpreter-gt-f720.so.0.0.0 "${PKG}"/usr/lib/iscan/libesci-interpreter-gt-f720.so.0
+
+# Install firmwares
+  install -m 755 -d "${PKG}"/usr/share/esci
+  install -m 644 -t "${PKG}"/usr/share/esci share/esci/esfw8b.bin
+
+}

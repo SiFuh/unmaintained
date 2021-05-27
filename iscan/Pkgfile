@@ -1,0 +1,58 @@
+# Description:   EPSON Image Scan! front-end for scanners and all-in-ones
+# URL:           http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX
+# Maintainer:    Lin SiFuh, #crux at freenode dot net
+# Depends on:    sane gtk2
+
+name=iscan
+version=2.30.4.2
+release=1
+source=(http://support.epson.net/linux/src/scanner/${name}/${name}_${version%.*}-${version/*.}.tar.gz
+        epkowa.conf
+        libpng15.patch
+        jpegstream.cc.patch)
+
+build() {
+
+  cd "${name}"-"${version%.*}"
+
+  # patch for building iscan against libpng15 by giovanni
+  patch -Np0 -i "../libpng15.patch"
+  # patch for ambiguous div in jpegstream.cc
+  patch -Np0 -i "../jpegstream.cc.patch"
+  # add fix for CXX ABI different than 1002
+  ln -s libesmod-x86_64.c2.so non-free/libesmod-x86_64.so
+
+  export LDFLAGS="${LDFLAGS} -ldl -lpng16"
+
+  ./configure --prefix=/usr                \
+              --enable-png                 \
+              --enable-jpeg                \
+              --enable-tiff                \
+              --enable-gimp                \
+              --enable-frontend            \
+              --sbindir=/usr/bin           \
+              --enable-dependency-reduction
+  make
+  make DESTDIR="${PKG}" install
+
+  # install sane configuration files
+  install -m 755 -d "${PKG}"/etc/sane.d
+  install -m 644 -D backend/epkowa.conf "${PKG}"/etc/sane.d/
+  install -m 755 -d "${PKG}"/etc/sane.d/dll.d
+  install -m 644 "${SRC}"/epkowa.conf "${PKG}"/etc/sane.d/dll.d/
+
+  # install desktop file
+  install -m 755 -d "${PKG}"/usr/share/applications
+  install -m 644 "${name}".desktop "${PKG}"/usr/share/applications/
+
+  # install license
+  install -m 755 -d "${PKG}"/usr/share/licenses/"${name}"
+
+  # install plugin for GIMP
+  install -m 755 -d "${PKG}"/usr/lib/gimp/2.0/plug-ins
+  ln -s /usr/bin/"${name}" "${PKG}"/usr/lib/gimp/2.0/plug-ins/
+
+  # remove locales
+  rm -rf "${PKG}"/usr/share/locale
+
+}
